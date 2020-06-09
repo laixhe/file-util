@@ -1,0 +1,17 @@
+
+# 获取要解析文件，目前支持 txt xlsx xls
+getPath = "./example/test.xlsx"
+# 保存文件 (注: 根据保存文件的后缀来选用下的格式)，目前支持 sql json
+outPath = "./example/data.sql"
+
+# 输出格式 json
+[json]
+# 字段 (如: [{"image":"1","info":"2","author":"3","creative_time":"2020-06-06"}] )
+select = ["image","info","author","creative_time"]
+
+# 输出格式 sql
+[sql]
+# (如: INSERT INTO paper_strip(image,info,author,creative_time) VALUES ('1','2','3','2020-06-06') )
+oper = "insert" # 目前支持 insert
+tableName = "paper_strip"
+select = ["image","info","author","creative_time"]
