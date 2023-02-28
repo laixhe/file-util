@@ -2,7 +2,8 @@ package main
 
 import (
 	"errors"
-	"github.com/360EntSecGroup-Skylar/excelize"
+
+	"github.com/xuri/excelize/v2"
 )
 
 // 解析 xlsx xls 文件
@@ -12,14 +13,17 @@ func getXls() ([][]string, error) {
 
 	file, err := excelize.OpenFile(conf.GetPath)
 	if err != nil {
-		return nil, errors.New("打开解析 xlsx 或 xls 文件失败："+err.Error())
+		return nil, errors.New("打开解析 xlsx 或 xls 文件失败：" + err.Error())
 	}
 
 	// 获取所有工作表
 	for _, sheet := range file.GetSheetMap() {
 
 		// 获取 工作表 上所有单元格
-		rows := file.GetRows(sheet)
+		rows, err := file.GetRows(sheet)
+		if err != nil {
+			return nil, errors.New("打开" + sheet + "单元格失败：" + err.Error())
+		}
 
 		// 获取单元格数据
 		for rowK, row := range rows {

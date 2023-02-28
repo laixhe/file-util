@@ -3,14 +3,14 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 )
 
 var replacerSql = strings.NewReplacer(
 	"'", "\\'",
-	)
+)
 
 func outSql(getData [][]string) error {
 
@@ -42,7 +42,7 @@ func outSql(getData [][]string) error {
 	}
 
 	// 写入文件
-	err := ioutil.WriteFile(conf.OutPath, []byte(selectData), 0666)
+	err := os.WriteFile(conf.OutPath, []byte(selectData), 0666)
 	if err != nil {
 		return err
 	}

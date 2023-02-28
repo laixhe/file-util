@@ -3,8 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 )
 
@@ -19,8 +19,8 @@ func outJson(getData [][]string) error {
 
 	for _, data := range getData {
 		if len(data) != selectLen {
-			log.Printf("数据长度不等于 select:%v\n", data)
-			continue
+			log.Printf("数据长度不等于 select:%v %v\n", data, conf.Json.Select)
+			//continue
 		}
 
 		selectData += "{"
@@ -44,7 +44,7 @@ func outJson(getData [][]string) error {
 	selectData += "\r\n]"
 
 	// 写入文件
-	err := ioutil.WriteFile(conf.OutPath, []byte(selectData), 0666)
+	err := os.WriteFile(conf.OutPath, []byte(selectData), 0666)
 	if err != nil {
 		return err
 	}

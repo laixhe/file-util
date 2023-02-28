@@ -13,7 +13,7 @@ func getTxt() ([][]string, error) {
 
 	file, err := os.OpenFile(conf.GetPath, os.O_RDONLY, 0600)
 	if err != nil {
-		return nil, errors.New("打开解析txt文件失败："+err.Error())
+		return nil, errors.New("打开解析txt文件失败:" + err.Error())
 	}
 
 	data := make([][]string, 0)
@@ -32,7 +32,7 @@ func getTxt() ([][]string, error) {
 	}
 
 	if len(data) == 0 {
-		return nil, errors.New("解析txt文件没有数据！")
+		return nil, errors.New("解析txt文件没有数据!")
 	}
 
 	return data, nil
