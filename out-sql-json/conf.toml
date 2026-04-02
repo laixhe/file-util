@@ -1,0 +1,5 @@
+getPath = "./example/item.xlsx"
+outPath = "./example/item.json"
+
+[json]
+select = ["itemId","itemName","itemDec","itemType","quality","part","itemIcon"]
